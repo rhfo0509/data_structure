@@ -1,0 +1,19 @@
+from typing import MutableSequence
+
+def shaker_sort(a: MutableSequence) -> None:
+  left = 0
+  right = len(a) - 1
+  last = right
+  while left < right:
+    # 홀수 패스 (가장 작은 원소를 맨 앞으로)
+    for j in range(right, left, -1):
+      if a[j] < a[j - 1]:
+        a[j], a[j - 1] = a[j - 1], a[j]
+        last = j
+    left = last
+    # 짝수 패스 (가장 큰 원소를 맨 뒤로)
+    for j in range(left, right):
+      if a[j] > a[j + 1]:
+        a[j], a[j + 1] = a[j + 1], a[j]
+        last = j
+    right = last
